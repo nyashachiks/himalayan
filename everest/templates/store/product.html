@@ -1,0 +1,87 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<br/>
+<div class="row">
+    <div class="col-lg-7">
+        <div class="box-element">
+            <h5>Sony 55" Android TV</h5>
+            <hr>
+            <div align="center">
+                <img src="{% static 'images/sony-tv.jpg' %}" width="500">
+            </div>
+            <h6>Price: $650.00</h6>
+        </div>
+        <br/>
+    </div>
+    <div class="col-lg-5">
+        <div class="box-element">
+            <div align="right">
+                <a href="{% url 'everest:store' %}" class="btn btn-outline-secondary">Back To Store</a>
+                <button class="btn btn-outline-primary add-btn">Add To Cart</button>
+            </div>
+            <br/>
+            <h5>Sony 55" Android TV Reviews</h5>
+            <hr>
+            <small><b><i>Sample User 1:</i></b> Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+                consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt...</small>
+            <hr>
+            <small><b><i>Sample User 2:</i></b> Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+                    consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt...</small>
+            <hr>
+            <h6>Rate this product</h6>
+            <div class="rate">
+                <input type="radio" id="star5" name="rate" value="5"/>
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4"/>
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3"/>
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2"/>
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1"/>
+                <label for="star1" title="text">1 star</label>
+            </div>
+            <br/><br/>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <h6>Product Details</h6>
+        <div class="box-element">
+            <hr>
+            <h6>Description</h6>
+            <small>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
+                quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+            </small><br/><br/>
+            <h6>Specifications</h6>
+            <small>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
+                quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+            </small><br/><br/>
+            <h6>Weight</h6>
+            <small>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
+                quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+            </small><br/><br/>
+            <h6>Dimensions</h6>
+            <small>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
+                quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+            </small><br/><br/>
+        </div>
+        <br/>
+    </div>
+    <div class="col-lg-4">
+        <h6>Similar Products</h6>
+        <img class="thumbnail" src="{% static 'images/sony-tv.jpg' %}">
+        <div class="box-element product">
+            <h6><strong>Sony 55" Android TV</strong></h6>
+            <hr>
+            <h6>Price: $650.00</h6>
+            <button class="btn btn-outline-primary add-btn">Add To Cart</button>
+            <a href="{% url 'everest:product' %}" class="btn btn-outline-secondary">View</a>
+        </div>
+    </div>
+        <br/>
+    </div>
+</div>
+{% endblock content %}
