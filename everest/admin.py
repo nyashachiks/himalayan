@@ -8,6 +8,7 @@ from .models import (Customer,
                      PurchaseOrder,
                      CartItem,
                      LogisticsSupplier,
+                     ShippingAddress,
                      Invoice,
                      Images)
 
@@ -21,5 +22,6 @@ admin.site.register(Product)
 admin.site.register(PurchaseOrder)
 admin.site.register(CartItem)
 admin.site.register(LogisticsSupplier)
+admin.site.register(ShippingAddress)
 admin.site.register(Invoice)
 admin.site.register(Images)

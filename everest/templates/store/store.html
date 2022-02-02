@@ -57,46 +57,18 @@
 <hr>
 <p><h5>Top Products</h5></p>
 <div class="row">
+    {% for product in products %}
     <div class="col-lg-3">
-        <img class="thumbnail" src="{% static 'images/sony-tv.jpg' %}">
+        <img class="thumbnail" src="{{ product.image.url }}">
         <div class="box-element product">
-            <h6><strong>Sony 55" Android TV</strong></h6>
+            <h6><strong>{{ product.name }}</strong></h6>
             <hr>
-            <h6>Price: $650.00</h6>
+            <h6>{{ product.price|floatformat:2}}</h6>
             <button class="btn btn-outline-primary add-btn">Add To Cart</button>
             <a href="{% url 'everest:product' %}" class="btn btn-outline-secondary">View</a>
         </div>
     </div>
-    <div class="col-lg-3">
-        <img class="thumbnail" src="{% static 'images/sharp-fridge.jpg' %}">
-        <div class="box-element product">
-            <h6><strong>Sharp French 4 Door Fridge</strong></h6>
-            <hr>
-            <h6>Price: $720.00</h6>
-            <button class="btn btn-outline-primary add-btn">Add To Cart</button>
-            <a href="{% url 'everest:product' %}" class="btn btn-outline-secondary">View</a>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <img class="thumbnail"src="{% static 'images/iphone12.jpg' %}">
-        <div class="box-element product">
-            <h6><strong>Apple iPhone 12</strong></h6>
-            <hr>
-            <h6>Price: $620.00</h6>
-            <button class="btn btn-outline-primary add-btn">Add To Cart</button>
-            <a href="{% url 'everest:product' %}" class="btn btn-outline-secondary">View</a>
-        </div>
-    </div>
-    <div class="col-lg-3">
-        <img class="thumbnail"src="{% static 'images/placeholder-black.jpg' %}">
-        <div class="box-element product">
-            <h6><strong>Product</strong></h6>
-            <hr>
-            <h6>Price: $20.00</h6>
-            <button class="btn btn-outline-primary add-btn">Add To Cart</button>
-            <a href="{% url 'everest:product' %}" class="btn btn-outline-secondary">View</a>
-        </div>
-    </div>
+    {% endfor %}
 </div>
 <br/>
 {% endblock content %}
