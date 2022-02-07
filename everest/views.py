@@ -26,10 +26,26 @@ def product(request):
 
 
 def cart(request):
-    context = {}
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        purchaseorder, created = PurchaseOrder.objects.get_or_create(customer=customer, is_order_complete=False)
+        items = purchaseorder.cartitem_set.all()
+    else:
+        items = []
+        purchaseorder = {'get_cart_total': 0, 'get_cart_quantity': 0}
+
+    context = {'items': items, 'purchaseorder': purchaseorder}
     return render(request, 'store/cart.html', context)
 
 
 def checkout(request):
-    context = {}
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        purchaseorder, created = PurchaseOrder.objects.get_or_create(customer=customer, is_order_complete=False)
+        items = purchaseorder.cartitem_set.all()
+    else:
+        items = []
+        purchaseorder = {'get_cart_total': 0, 'get_cart_quantity': 0}
+
+    context = {'items': items, 'purchaseorder': purchaseorder}
     return render(request, 'store/checkout.html', context)

@@ -17,7 +17,7 @@ class Customer(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return str(self.customer.name)
+        return str(self.customer)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -116,6 +116,18 @@ class PurchaseOrder(models.Model):
     def __str__(self):
         return self.order_number
 
+    @property
+    def get_cart_total(self):
+        cart_items = self.cartitem_set.all()
+        cart_total = sum(item.get_total for item in cart_items)
+        return cart_total
+
+    @property
+    def get_cart_quantity(self):
+        cart_items = self.cartitem_set.all()
+        cart_total = sum(item.quantity for item in cart_items)
+        return cart_total
+
 
 class CartItem(models.Model):
     line_item = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
@@ -126,7 +138,12 @@ class CartItem(models.Model):
     line_total = models.FloatField()
 
     def __str__(self):
-        return str(self.line_item)
+        return self.line_item
+
+    @property
+    def get_total(self):
+        total = self.line_item.price * self.quantity
+        return total
 
 
 class LogisticsSupplier(models.Model):

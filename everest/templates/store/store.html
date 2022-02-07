@@ -63,7 +63,7 @@
         <div class="box-element product">
             <h6><strong>{{ product.name }}</strong></h6>
             <hr>
-            <h6>{{ product.price|floatformat:2}}</h6>
+            <h6>${{ product.price|floatformat:2}}</h6>
             <button class="btn btn-outline-primary add-btn">Add To Cart</button>
             <a href="{% url 'everest:product' %}" class="btn btn-outline-secondary">View</a>
         </div>

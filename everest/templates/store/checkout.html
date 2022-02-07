@@ -54,34 +54,20 @@
             <hr>
             <h5>Order Summary</h5>
             <hr>
-            <div class="cart-row">
-                    <div style="flex:2"><img class="row-image" src="{% static 'images/sony-tv.jpg' %}"></div>
-                    <div style="flex:2">Sony 55" Android TV</div>
-                    <div style="flex:1">$650.00</div>
-                    <div style="flex:1">
-                        <p class="quantity">2</p>
-                        <div class="quantity">
-                            <img class="chg-quantity" src="{% static 'images/arrow-up.png' %}">
-                            <img class="chg-quantity" src="{% static 'images/arrow-down.png' %}">
-                        </div>
-                    </div>
-                    <div style="flex:1">$1300.00</div>
-                </div>
+                {% for item in items %}
                 <div class="cart-row">
-                    <div style="flex:2"><img class="row-image" src="{% static 'images/sharp-fridge.jpg' %}"></div>
-                    <div style="flex:2">Sharp French 4 Door Fridge</div>
-                    <div style="flex:1">$720.00</div>
-                    <div style="flex:1">
-                        <p class="quantity">1</p>
-                        <div class="quantity">
-                            <img class="chg-quantity" src="{% static 'images/arrow-up.png' %}">
-                            <img class="chg-quantity" src="{% static 'images/arrow-down.png' %}">
-                        </div>
+                    <div style="flex:2"><img class="row-image" src="{{ item.line_item.image.url }}"></div>
+                    <div style="flex:2">{{ item.line_item }}</div>
+                    <div style="flex:1">${{ item.unit_price|floatformat:2 }}</div>
+                    <div style="flex:1">x {{ item.quantity }}
                     </div>
-                    <div style="flex:1">$720.00</div>
+                    <div style="flex:1">${{ item.get_total|floatformat:2 }}</div>
                 </div>
-                <h6>Items: 3</h6>
-                <h6>Total: $2020.00</h6>
+                {% endfor %}
+                <div align="right">
+                    <h6>Items: {{purchaseorder.get_cart_quantity }}</h6>
+                    <h6>Total: ${{purchaseorder.get_cart_total }}</h6>
+                </div>
         </div>
     </div>
 </div>
