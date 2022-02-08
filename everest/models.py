@@ -33,7 +33,7 @@ class Customer(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     description = models.CharField(max_length=1000, null=True, blank=True)
-    image = models.ImageField(default='no_image.jpg', upload_to='category_pics', null=True)
+    image = models.ImageField(default='no_image.jpg', upload_to='category_images', null=True)
 
     def __str__(self):
         return self.name
@@ -49,7 +49,7 @@ class Category(models.Model):
 
 class Brand(models.Model):
     brand = models.CharField(max_length=40, null=True, blank=True)
-    brand_image = models.ImageField(default='no_image.jpg', upload_to='brand_pics')
+    brand_image = models.ImageField(default='no_image.jpg', upload_to='brand_images')
 
     def __str__(self):
         return self.brand
@@ -90,7 +90,7 @@ class Product(models.Model):
     is_digital = models.BooleanField(default=False, null=True, blank=False)
     unit_of_measure = models.ForeignKey(UnitsOfMeasure, on_delete=models.CASCADE)
     price = models.FloatField()
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics', null=True)
+    image = models.ImageField(default='no_image.jpg', upload_to='product_images', null=True)
 
     def __str__(self):
         return str(self.name)
@@ -110,7 +110,6 @@ class PurchaseOrder(models.Model):
     order_number = models.CharField(max_length=100, null=True, blank=True)
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateTimeField(default=timezone.now)
-    order_total = models.FloatField()
     is_order_complete = models.BooleanField(default=False, null=True, blank=False)
 
     def __str__(self):
@@ -134,11 +133,6 @@ class CartItem(models.Model):
     purchase_order = models.ForeignKey(PurchaseOrder, on_delete=models.SET_NULL, null=True)
     date_added = models.DateTimeField(default=timezone.now)
     quantity = models.IntegerField(default=0, null=True, blank=True)
-    unit_price = models.FloatField(default=0, null=True, blank=True)
-    line_total = models.FloatField()
-
-    def __str__(self):
-        return self.line_item
 
     @property
     def get_total(self):
@@ -177,7 +171,7 @@ class Invoice(models.Model):
 
 
 class Images(models.Model):
-    upload = models.ImageField()
+    upload = models.ImageField(default='no_image.jpg', upload_to='more_product_images', null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     def __str__(self):

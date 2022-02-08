@@ -58,7 +58,7 @@
                 <div class="cart-row">
                     <div style="flex:2"><img class="row-image" src="{{ item.line_item.image.url }}"></div>
                     <div style="flex:2">{{ item.line_item }}</div>
-                    <div style="flex:1">${{ item.unit_price|floatformat:2 }}</div>
+                    <div style="flex:1">${{ item.line_item.price|floatformat:2 }}</div>
                     <div style="flex:1">x {{ item.quantity }}
                     </div>
                     <div style="flex:1">${{ item.get_total|floatformat:2 }}</div>
