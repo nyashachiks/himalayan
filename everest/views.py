@@ -24,7 +24,7 @@ def store(request):
         cart_quantity = purchaseorder.get_cart_quantity
     else:
         items = []
-        purchaseorder = {'get_cart_total': 0, 'get_cart_quantity': 0}
+        purchaseorder = {'get_cart_total': 0, 'get_cart_quantity': 0, 'shipping': False}
         cart_quantity = purchaseorder['get_cart_quantity']
 
     products = Product.objects.all()
@@ -40,7 +40,7 @@ def product(request):
         cart_quantity = purchaseorder.get_cart_quantity
     else:
         items = []
-        purchaseorder = {'get_cart_total': 0, 'get_cart_quantity': 0}
+        purchaseorder = {'get_cart_total': 0, 'get_cart_quantity': 0, 'shipping': False}
         cart_quantity = purchaseorder['get_cart_quantity']
 
     context = {'cart_quantity': cart_quantity}
@@ -55,7 +55,7 @@ def cart(request):
         cart_quantity = purchaseorder.get_cart_quantity
     else:
         items = []
-        purchaseorder = {'get_cart_total': 0, 'get_cart_quantity': 0}
+        purchaseorder = {'get_cart_total': 0, 'get_cart_quantity': 0, 'shipping': False}
         cart_quantity = purchaseorder['get_cart_quantity']
 
     context = {'items': items, 'purchaseorder': purchaseorder, 'cart_quantity': cart_quantity}
@@ -70,7 +70,7 @@ def checkout(request):
         cart_quantity = purchaseorder.get_cart_quantity
     else:
         items = []
-        purchaseorder = {'get_cart_total': 0, 'get_cart_quantity': 0}
+        purchaseorder = {'get_cart_total': 0, 'get_cart_quantity': 0, 'shipping': False}
         cart_quantity = purchaseorder['get_cart_quantity']
 
     context = {'items': items, 'purchaseorder': purchaseorder, 'cart_quantity': cart_quantity}

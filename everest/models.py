@@ -116,6 +116,15 @@ class PurchaseOrder(models.Model):
         return self.order_number
 
     @property
+    def shipping(self):
+        shipping = False
+        cart_items = self.cartitem_set.all()
+        for i in cart_items:
+            if i.line_item.is_digital == False:
+                shipping = True
+        return shipping
+
+    @property
     def get_cart_total(self):
         cart_items = self.cartitem_set.all()
         cart_total = sum(item.get_total for item in cart_items)

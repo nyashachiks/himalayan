@@ -16,9 +16,9 @@
                     </div>
                 </div>
                 <hr>
-                <h5>Shipping Details</h5>
-                <hr>
                 <div id="shipping-info">
+                    <h5>Shipping Details</h5>
+                    <hr>
                     <div class="form-field">
                         <input required class="form-control" type="text" name="address1" placeholder="Address 1">
                     </div>
@@ -71,4 +71,11 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var shipping = '{{ purchaseorder.shipping }}'
+
+    if (shipping == 'False'){
+        document.getElementById('shipping-info').innerHTML = ''
+    }
+</script>
 {% endblock content %}
