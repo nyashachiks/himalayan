@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import json
+import datetime
 from .models import (Customer,
                      Category,
                      Brand,
@@ -98,3 +99,8 @@ def updateitem(request):
         cart_item.delete()
 
     return JsonResponse('Item was added', safe=False)
+
+
+def processPurchaseOrder(request):
+    print('Data: ', request.body)
+    return JsonResponse('Payment complete', safe=False)
