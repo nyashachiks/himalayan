@@ -113,7 +113,7 @@ class PurchaseOrder(models.Model):
     is_order_complete = models.BooleanField(default=False, null=True, blank=False)
 
     def __str__(self):
-        return self.order_number
+        return str(self.order_number)
 
     @property
     def shipping(self):
@@ -162,13 +162,14 @@ class LogisticsSupplier(models.Model):
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
     purchase_order = models.ForeignKey(PurchaseOrder, on_delete=models.SET_NULL, null=True)
-    address = models.CharField(max_length=100, null=True, blank=True)
+    address1 = models.CharField(max_length=100, null=True, blank=True)
+    address2 = models.CharField(max_length=100, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
     country = CountryField()
     date_added = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.address}, {self.city}, {self.country}"
+        return str(self.address1) if self.address1 else ''
 
 
 class Invoice(models.Model):

@@ -71,7 +71,7 @@
 </div>
 <script type="text/javascript">
     var shipping = '{{ purchaseorder.shipping }}'
-    var total = '{{ purchaseorder.get_cart_total|floatformat:2}}'
+    var total = '{{ purchaseorder.get_cart_total}}'
 
     if (shipping == 'False'){
         document.getElementById('shipping-info').innerHTML = ''

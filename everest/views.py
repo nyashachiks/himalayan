@@ -102,5 +102,27 @@ def updateitem(request):
 
 
 def processPurchaseOrder(request):
-    print('Data: ', request.body)
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.loads(request.body)
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        purchaseorder, created = PurchaseOrder.objects.get_or_create(customer=customer, is_order_complete=False)
+        total = float(data['form']['total'])
+        purchaseorder.order_number = transaction_id
+
+        if total == purchaseorder.get_cart_total:
+            purchaseorder.is_order_complete = True
+        purchaseorder.save()
+
+        if purchaseorder.shipping == True:
+            ShippingAddress.objects.create(customer=customer,
+                                           purchase_order=purchaseorder,
+                                           address1=data['shipping']['address1'],
+                                           address2=data['shipping']['address2'],
+                                           city=data['shipping']['city'],
+                                           country=data['shipping']['country'],)
+
+    else:
+        print("User is not logged in")
     return JsonResponse('Payment complete', safe=False)
